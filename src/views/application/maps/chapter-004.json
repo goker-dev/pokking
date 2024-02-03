@@ -1,0 +1,19 @@
+{
+  "name": "Chapter 001",
+  "journey": 2810,
+  "time": 40,
+  "humans": 8000000,
+  "eggs": [
+    {"location":200},
+    {"location":800},
+    {"location":850},
+    {"location":1050},
+    {"location":1100},
+    {"location":1150}
+  ],
+  "aliens": [
+    {"location": 800, "ammo":1},
+    {"location": 1800, "ammo":2},
+    {"location": 2200, "ammo":2}
+  ]
+}

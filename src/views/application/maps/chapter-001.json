@@ -1,0 +1,26 @@
+{
+  "name": "Chapter 001",
+  "journey": 3810,
+  "time": 50,
+  "humans": 8000000,
+  "eggs": [
+    {"location":100},
+    {"location":300},
+    {"location":1350},
+    {"location":1800},
+    {"location":1850},
+    {"location":1900},
+    {"location":2900},
+    {"location":2950},
+    {"location":3100}
+  ],
+  "aliens": [
+    {"location": 1000, "ammo":2},
+    {"location": 1750, "ammo":1},
+    {"location": 2200, "ammo":1},
+    {"location": 2250, "ammo":1},
+    {"location": 2350, "ammo":1},
+    {"location": 3350, "ammo":1},
+    {"location": 3850, "ammo":4}
+  ]
+}
