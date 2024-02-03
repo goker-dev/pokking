@@ -1,6 +1,7 @@
 import { GameItem } from './GameItem.class.ts';
 import { Game } from '@/views/application/Game.class.ts';
 import { Bullet } from '@/views/application/Bullet.class.ts';
+import { Update } from '@/views/application/Game.types.ts';
 
 export class Alien extends GameItem {
   distance = 0;
@@ -33,14 +34,7 @@ export class Alien extends GameItem {
   }
 
   init() {}
-  override update(
-    id: number,
-    engine: CanvasRenderingContext2D,
-    frame: number,
-    horizontal: number,
-    vertical: number,
-    fire: boolean,
-  ) {
+  update({ id, engine, frame, horizontal, vertical, fire }: Update) {
     this.walk = (this.walk + 1) % 24;
     if (this.walk == 12) this.distance -= 10;
 
@@ -112,9 +106,9 @@ export class Alien extends GameItem {
       else this.y += this.speedY;
     }
 
-    for (const i in this.bullets) {
-      this.bullets[i].update(i, this.bullets, engine, frame, horizontal, vertical, fire);
-    }
+    this.bullets.forEach((bullet, id) =>
+      bullet.update({ id, bullets: this.bullets, engine, frame, horizontal, vertical, fire }),
+    );
     this.render(engine);
   }
 
@@ -161,8 +155,8 @@ export class Alien extends GameItem {
     );
   }
 
-  die(id: number) {
-    if (this.isDying) return;
+  die(id: number | undefined) {
+    if (!id || this.isDying) return;
     this.isDying = true;
     setTimeout(() => {
       this.game.aliens.splice(id, 1);

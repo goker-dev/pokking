@@ -1,4 +1,5 @@
 import { Game } from '@/views/application/Game.class.ts';
+import { Update } from '@/views/application/Game.types.ts';
 
 export class GameItem {
   game: Game;
@@ -16,13 +17,7 @@ export class GameItem {
     this.color = 'rgba(11,11,255,1)';
   }
 
-  update(
-    engine: CanvasRenderingContext2D,
-    frame: number,
-    horizontal: number,
-    vertical: number,
-    fire: boolean,
-  ) {
+  update({ engine, horizontal, vertical, fire }: Update) {
     this.x += this.game.speed * horizontal;
     this.y += this.game.speed * vertical;
     this.color = fire ? 'rgba(255,11,11,1)' : 'rgba(11,11,255,1)';

@@ -1,5 +1,6 @@
 import { GameItem } from './GameItem.class.ts';
 import { Game } from '@/views/application/Game.class.ts';
+import { Update } from '@/views/application/Game.types.ts';
 
 export class Bullet extends GameItem {
   distance = 0;
@@ -20,15 +21,7 @@ export class Bullet extends GameItem {
     return {};
   }
 
-  override update(
-    id: number,
-    bullets: number,
-    engine: CanvasRenderingContext2D,
-    frame: number,
-    horizontal: number,
-    vertical: number,
-    fire: number,
-  ) {
+  override update({ id, engine, horizontal, bullets }: Update & { bullets: Bullet[] }) {
     if (this.rangeOut || this.x < 0) {
       this.remove(id, bullets);
     } else if (!this.game.king.stop && horizontal > 0) {
@@ -69,8 +62,8 @@ export class Bullet extends GameItem {
     engine.fill();
   }
 
-  remove(id, bullets: Bullet[]) {
-    bullets.splice(id, 1);
+  remove(id: number | undefined, bullets: Bullet[]) {
+    if (id) bullets.splice(id, 1);
   }
 
   getColor() {

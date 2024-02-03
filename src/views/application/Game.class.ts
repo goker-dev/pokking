@@ -129,10 +129,10 @@ export class Game {
     const horizontal = this.input.getHorizontal();
     const vertical = this.input.getVertical();
     const fire = this.input.getFire();
-
-    this.background.update(this.engine, this.FRAME, horizontal, vertical, fire);
-    this.world.update(this.engine, this.FRAME, horizontal, vertical, fire);
-    this.king.update(this.engine, this.FRAME, horizontal, vertical, fire);
+    const params = { engine: this.engine, frame: this.FRAME, horizontal, vertical, fire };
+    this.background.update(params);
+    this.world.update(params);
+    this.king.update(params);
     //this.item.update(this.engine, this.FRAME, horizontal, vertical, fire);
     if (this.gamePad) this.gamePad.render(this.engine);
 

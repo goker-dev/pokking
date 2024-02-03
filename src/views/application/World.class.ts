@@ -2,6 +2,7 @@ import { GameItem } from './GameItem.class.ts';
 import { Egg } from '@/views/application/Egg.class.ts';
 import { Alien } from '@/views/application/Alien.class.ts';
 import { Game } from '@/views/application/Game.class.ts';
+import { Update } from '@/views/application/Game.types.ts';
 
 export class World extends GameItem {
   isStart = false;
@@ -72,13 +73,7 @@ export class World extends GameItem {
     console.log('EGGS', this.game.eggs.length);
     console.log('ALIENS', this.game.aliens.length);
   }
-  update(
-    engine: CanvasRenderingContext2D,
-    frame: number,
-    horizontal: number,
-    vertical: number,
-    fire: boolean,
-  ) {
+  update({ engine, frame, horizontal, vertical, fire }: Update) {
     const buffer = this.game.W / 2;
     if (!this.game.king.stop && !this.isEnd && horizontal > 0)
       if (-this.x < this.w - buffer) {
@@ -124,11 +119,11 @@ export class World extends GameItem {
     // eggs and aliens are must be rendered after the map;
     this.game.eggs.forEach((egg, id) => {
       this.game.eggs[id].x = this.x + egg.distance;
-      this.game.eggs[id].update(id, engine, frame, horizontal, vertical, fire);
+      this.game.eggs[id].update({ id, engine, frame, horizontal, vertical, fire });
     });
     this.game.aliens.forEach((alien, id) => {
       this.game.aliens[id].x = this.x + alien.distance;
-      this.game.aliens[id].update(id, engine, frame, horizontal, vertical, fire);
+      this.game.aliens[id].update({ id, engine, frame, horizontal, vertical, fire });
     });
   }
 

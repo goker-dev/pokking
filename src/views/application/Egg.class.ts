@@ -1,5 +1,6 @@
 import { GameItem } from './GameItem.class.ts';
 import { Game } from '@/views/application/Game.class.ts';
+import { Update } from '@/views/application/Game.types.ts';
 
 export class Egg extends GameItem {
   distance: number = 0;
@@ -14,14 +15,7 @@ export class Egg extends GameItem {
   static images() {
     return { egg: '/images/eggs.png' };
   }
-  override update(
-    id: number,
-    engine: CanvasRenderingContext2D,
-    frame: number,
-    horizontal: number,
-    vertical: number,
-    fire: boolean,
-  ) {
+  override update({ id, engine }: Update) {
     if (
       this.game.king.dx < this.x + this.w &&
       this.game.king.dx + this.game.king.dw > this.x &&
@@ -86,8 +80,8 @@ export class Egg extends GameItem {
     }
   }
 
-  die(id: number) {
-    if (this.isDying) return;
+  die(id: number | undefined) {
+    if (!id || this.isDying) return;
     this.isDying = true;
     setTimeout(() => {
       this.game.eggs.splice(id, 1);

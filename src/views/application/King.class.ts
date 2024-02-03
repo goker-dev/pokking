@@ -1,5 +1,6 @@
 import { GameItem } from './GameItem.class.ts';
 import { Game } from '@/views/application/Game.class.ts';
+import { Update } from '@/views/application/Game.types.ts';
 
 export class King extends GameItem {
   i = 0;
@@ -66,13 +67,7 @@ export class King extends GameItem {
     this.weapon = this.map['sword']['default'][0];
   }
 
-  update(
-    engine: CanvasRenderingContext2D,
-    frame: number,
-    horizontal: number,
-    vertical: number,
-    fire: boolean,
-  ) {
+  update({ engine, horizontal, vertical, fire }: Update) {
     if (!this.stop && horizontal > 0) {
       this.sx = (this.sx + this.sw) % 600;
       //console.log('KING RIGHT', king.journey, map.buffer, king.buffer);

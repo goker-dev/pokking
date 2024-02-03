@@ -1,5 +1,6 @@
 import { GameItem } from './GameItem.class.ts';
 import { Game } from '@/views/application/Game.class.ts';
+import { Update } from '@/views/application/Game.types.ts';
 
 export class Background extends GameItem {
   i = 0;
@@ -26,13 +27,7 @@ export class Background extends GameItem {
     this.y = Math.abs(Math.min(this.h - this.dh, 0));
     //console.log('background.loaded', this.w, this.h, this.dw, this.dh, r, this.x, this.y);
   }
-  update(
-    engine: CanvasRenderingContext2D,
-    frame: number,
-    horizontal: number,
-    vertical: number,
-    fire: boolean,
-  ) {
+  update({ engine, horizontal }: Update) {
     if (
       !this.game.king.stop &&
       !this.game.world.isEnd &&
