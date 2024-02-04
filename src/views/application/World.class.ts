@@ -2,7 +2,7 @@ import { GameItem } from './GameItem.class.ts';
 import { Egg } from '@/views/application/Egg.class.ts';
 import { Alien } from '@/views/application/Alien.class.ts';
 import { Game } from '@/views/application/Game.class.ts';
-import { Update } from '@/views/application/Game.types.ts';
+import { Chapter, Update } from '@/views/application/Game.types.ts';
 
 export class World extends GameItem {
   isStart = false;
@@ -32,8 +32,8 @@ export class World extends GameItem {
     };
   }
 
-  async init(chapter: string) {
-    const data = await import(chapter);
+  async init(chapter: () => Promise<Chapter>) {
+    const data = await chapter();
 
     const buffer = this.game.W / 2;
     this.ground = this.game.H - 30;
@@ -41,7 +41,7 @@ export class World extends GameItem {
     // log.map = data;
     //console.log('Map init', data);
     // this.eggs, (aliens = []);
-    this.title = data.title;
+    this.title = data.name;
     this.x = buffer;
     this.w = data.journey; // + W;
     console.log({ x: this.x, w: this.w });

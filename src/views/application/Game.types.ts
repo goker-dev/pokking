@@ -6,3 +6,12 @@ export type Update = {
   vertical: number;
   fire: boolean;
 };
+
+export type Chapter = {
+  name: string;
+  journey: number;
+  time: number;
+  humans: number;
+  eggs: [{ location: number }];
+  aliens: [{ location: number; ammo: number }];
+};

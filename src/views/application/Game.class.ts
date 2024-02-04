@@ -6,6 +6,7 @@ import { Board } from '@/views/application/Board.class.ts';
 import { Egg } from '@/views/application/Egg.class.ts';
 import { Alien } from '@/views/application/Alien.class.ts';
 import { Background } from '@/views/application/Background.class.ts';
+import { Chapter } from '@/views/application/Game.types.ts';
 export class Game {
   loading = true;
   FPS = 32;
@@ -24,7 +25,8 @@ export class Game {
   eggs: Egg[] = [];
   aliens: Alien[] = [];
   time = new Date().getTime();
-  chapters = ['./maps/chapter-001.json', './maps/chapter-002.json'];
+  // chapters = ['./maps/chapter-001.json', './maps/chapter-002.json'];
+  chapters = import.meta.glob<Chapter>('./maps/chapter-*.json');
 
   input: Input = new Input();
   gamePad: VirtualGamePad | undefined;
@@ -85,7 +87,8 @@ export class Game {
         for (const i in value) Object.assign(this.images, value[i]);
         console.log('All images are loaded!');
         this.loading = false;
-        await this.world.init(this.chapters[0]);
+        console.log({ chapter: this.chapters });
+        await this.world.init(this.chapters['./maps/chapter-001.json']);
         this.background.init();
         this.king.init();
         this.update();
