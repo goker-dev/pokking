@@ -47,6 +47,7 @@ export class Game {
   // }
   init(container: HTMLDivElement, screenWidth: number, screenHeight: number) {
     this.container = container;
+    // disable the strict mode to prevent double render in development
     if (container.hasChildNodes()) return;
     console.log('New Game');
     this.W = screenWidth;

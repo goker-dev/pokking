@@ -156,7 +156,7 @@ export class Alien extends GameItem {
   }
 
   die(id: number | undefined) {
-    if (!id || this.isDying) return;
+    if (id === undefined || this.isDying) return;
     this.isDying = true;
     setTimeout(() => {
       this.game.aliens.splice(id, 1);

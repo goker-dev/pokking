@@ -29,7 +29,7 @@ export class Egg extends GameItem {
       ) {
         //console.log('top collision')
         if (!this.isDying) this.game.king.speedY -= 20;
-        //console.log('speedY', king.speedY)
+        // console.log('speedY', this.game.king.speedY, id);
         this.die(id);
       }
 
@@ -81,7 +81,7 @@ export class Egg extends GameItem {
   }
 
   die(id: number | undefined) {
-    if (!id || this.isDying) return;
+    if (id === undefined || this.isDying) return;
     this.isDying = true;
     setTimeout(() => {
       this.game.eggs.splice(id, 1);

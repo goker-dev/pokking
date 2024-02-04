@@ -63,7 +63,8 @@ export class Bullet extends GameItem {
   }
 
   remove(id: number | undefined, bullets: Bullet[]) {
-    if (id) bullets.splice(id, 1);
+    if (id === undefined) return;
+    bullets.splice(id, 1);
   }
 
   getColor() {

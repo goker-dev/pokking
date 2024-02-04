@@ -31,7 +31,7 @@ export class Background extends GameItem {
     if (
       !this.game.king.stop &&
       !this.game.world.isEnd &&
-      this.game.world.isStart &&
+      !this.game.world.isStart &&
       horizontal != 0
       // this.game.king.isInBuffer()
     ) {

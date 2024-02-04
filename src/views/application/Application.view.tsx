@@ -20,7 +20,7 @@ export function Component() {
       container.current?.clientWidth || innerWidth,
       container.current?.clientHeight || innerHeight,
     );
-    Animator(12, function () {
+    Animator(24, function () {
       game?.update();
     });
   }, []);

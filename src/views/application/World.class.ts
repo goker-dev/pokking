@@ -21,7 +21,6 @@ export class World extends GameItem {
     this.i = 0;
     this.timer = 0;
     this.humans = 0;
-    // this.game = game;
   }
 
   static images() {
@@ -49,7 +48,7 @@ export class World extends GameItem {
     this.buffer = (buffer / this.step) >> 0;
     this.humans = data.humans;
     this.maxTime = data.time;
-    //add aliens on end of the map as count of  non-broken eggs in previous chapters
+    //add aliens on end of the map as count of non-broken eggs in previous chapters
     this.game.aliens = [];
     // eggs to aliens
     this.game.eggs.forEach(() =>
