@@ -1,22 +1,22 @@
-function createSVGText() {
-  return document.createElementNS('http://www.w3.org/2000/svg', 'svg:text');
+function createSpan() {
+  return document.createElement('span');
 }
 export class Board {
-  humans = createSVGText();
-  journey = createSVGText();
-  aliens = createSVGText();
-  eggs = createSVGText();
+  humans = createSpan();
+  journey = createSpan();
+  aliens = createSpan();
+  eggs = createSpan();
   constructor() {
     this.init();
   }
 
   init() {
-    const boardObject = document.getElementById('#board') as HTMLObjectElement;
-    const svg = boardObject?.contentDocument;
-    this.humans = (svg?.getElementById('humans') || createSVGText()) as SVGTextElement;
-    this.journey = (svg?.getElementById('journey') || createSVGText()) as SVGTextElement;
-    this.aliens = (svg?.getElementById('aliens') || createSVGText()) as SVGTextElement;
-    this.eggs = (svg?.getElementById('eggs') || createSVGText()) as SVGTextElement;
+    // const boardObject = document.getElementById('#board') as HTMLObjectElement;
+    // const svg = boardObject?.contentDocument;
+    this.humans = (document?.getElementById('humans') || createSpan()) as HTMLSpanElement;
+    this.journey = (document?.getElementById('journey') || createSpan()) as HTMLSpanElement;
+    this.aliens = (document?.getElementById('aliens') || createSpan()) as HTMLSpanElement;
+    this.eggs = (document?.getElementById('eggs') || createSpan()) as HTMLSpanElement;
     this.humans.innerHTML = '0';
     this.journey.innerHTML = '0';
     this.aliens.innerHTML = '0';
