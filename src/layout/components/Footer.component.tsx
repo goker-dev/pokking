@@ -11,7 +11,7 @@ export default function Footer({ className = '' }: Props) {
 
   return (
     <footer
-      className={`h-14 flex item-center justify-center  w-full p-4 sm:px-6 lg:px-8 mx-auto bg-zinc-100 dark:bg-zinc-800 ${className}`}
+      className={`h-14 flex item-center justify-center  w-full p-4 sm:px-6 lg:px-8 mx-auto bg-black/10 border-t border-black/10 dark:bg-black/20 ${className}`}
     >
       <div className='flex flex-col gap-y-4 gap-x-0 justify-center sm:flex-row sm:items-center sm:gap-y-0 sm:gap-x-6 text-xs'>
         {navigation.map((i) => (

@@ -13,9 +13,9 @@ export const useNavigation = (relation: 'main' | 'footer' = 'main') => {
         to: '/howto',
       },
       {
-        text: t('App'),
+        text: t(' Game'),
         to: '/app',
-        icon: 'icon-brush',
+        icon: 'icon-gamepad',
       },
     ];
   if (relation === 'footer')

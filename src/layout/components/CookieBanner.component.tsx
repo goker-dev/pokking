@@ -28,7 +28,7 @@ export default function CookieBanner() {
                 </h2>
                 <div className='text-stone-600'>
                   {t(
-                    'We may use your information – collected through cookies and similar technologies - to improve your experience on our site, analyze how you use it and assist in our marketing efforts. You can always update your preferences via the Cookie Settings page. We will handle your personal information in line with our',
+                    'We may use your information – collected through cookies and similar technologies - to improve your experience on our site, analyze how you use it and assist in our marketing efforts. We will handle your personal information in line with our',
                   )}
                   <Link
                     to='/privacy'

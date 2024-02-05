@@ -6,7 +6,7 @@ interface Props extends HTMLAttributes<HTMLDivElement> {
 }
 
 export default function Divider({
-  borderClassName = 'h-1 border-t border-gray-200',
+  borderClassName = 'h-1 border-t border-black/20',
   align = 'center',
   children,
   className = '',

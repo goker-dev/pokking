@@ -14,10 +14,10 @@ export default function Header({ className = '' }: Props) {
   const navigation = useNavigation('main');
   return (
     <header
-      className={`z-40 h-16 flex flex-wrap sm:justify-center sm:flex-nowrap w-full bg-white shadow-sm border-b border-gray-200 dark:bg-zinc-900 dark:border-b-black/80 text-sm py-4 ${className}`}
+      className={`z-40 h-16 flex flex-wrap sm:justify-center sm:flex-nowrap w-full bg-black/10 shadow-sm border-b border-black/15 dark:bg-black/20 dark:border-b-black/20 text-sm py-4 ${className}`}
     >
       <nav
-        className='relative px-4 w-full xl:p-0 sm:flex sm:items-center sm:justify-between'
+        className='relative w-full xl:p-0 sm:flex sm:items-center sm:justify-between'
         aria-label={t('Global')}
       >
         <div className='flex items-center justify-between'>
@@ -26,7 +26,7 @@ export default function Header({ className = '' }: Props) {
             to='/'
             aria-label={t('Logo')}
           >
-            <Logo className='h-10 dark:fill-amber-50' />
+            <Logo className='h-10 fill-gray-900 dark:fill-amber-50' />
           </NavLink>
           <div className='sm:hidden'>
             <button

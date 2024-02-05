@@ -9,8 +9,10 @@ import { Background } from '@/views/application/Background.class.ts';
 import { Chapter } from '@/views/application/Game.types.ts';
 export class Game {
   loading = true;
+  isUninstalled = false;
   FPS = 32;
   FRAME = 0;
+  frame = -1;
   container = document.createElement('div');
   canvas = document.createElement('canvas');
   engine = this.canvas.getContext('2d');
@@ -24,7 +26,8 @@ export class Game {
   images: { [k: string]: HTMLImageElement } = {};
   eggs: Egg[] = [];
   aliens: Alien[] = [];
-  time = new Date().getTime();
+  // time = new Date().getTime();
+  time: null | number = null; // start time
   // chapters = ['./maps/chapter-001.json', './maps/chapter-002.json'];
   chapters = import.meta.glob<Chapter>('./maps/chapter-*.json');
 
@@ -49,13 +52,14 @@ export class Game {
     this.container = container;
     // disable the strict mode to prevent double render in development
     if (container.hasChildNodes()) return;
+    this.isUninstalled = false;
     console.log('New Game');
     this.W = screenWidth;
     this.H = screenHeight;
     // $('#game').css({width: W, height: H, overflow: 'hidden'});
     this.ground = this.H - 30;
     this.buffer = this.W / 2;
-    this.time = new Date().getTime();
+    // this.time = new Date().getTime();
     this.canvas.setAttribute('width', this.W.toString());
     this.canvas.setAttribute('height', this.H.toString());
     // container.appendChild(this.canvas);
@@ -125,7 +129,8 @@ export class Game {
   }
 
   update() {
-    if (this.loading || !this.engine) return;
+    if (this.loading || !this.engine) return true;
+    if (this.isUninstalled) return false;
     if (this.gamePad) this.gamePad.update(this.input);
 
     this.engine.clearRect(0, 0, this.W, this.H);
@@ -143,5 +148,31 @@ export class Game {
     if (this.world.isEnd) {
       this.input.removeEventListener();
     }
+    return true;
+  }
+
+  loop = (timestamp: number) => {
+    const delay = 1000 / this.FPS;
+    if (this.time === null) this.time = timestamp; // init start time
+    const seg = Math.floor((timestamp - this.time) / delay); // calc frame no.
+    // console.log({ seg, frame: this.frame });
+    if (seg > this.frame) {
+      // console.log('update');
+      // moved to next frame?
+      this.frame = seg; // update
+      this.update();
+    }
+    const id = requestAnimationFrame(this.loop);
+    if (this.isUninstalled) {
+      // console.log(id, 'cancelAnimationFrame');
+      cancelAnimationFrame(id);
+    }
+  };
+  uninstall() {
+    if (this.container.hasChildNodes()) this.container.removeChild<HTMLCanvasElement>(this.canvas);
+    // this.input.removeEventListener();
+    this.isUninstalled = true;
+    this.loading = true;
+    console.log('Uninstalled!');
   }
 }
