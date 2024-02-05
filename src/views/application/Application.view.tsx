@@ -3,7 +3,6 @@ import { useTranslation } from 'react-i18next';
 import { ErrorBoundary } from '@/components';
 import { useEffect, useRef } from 'react';
 import { Game } from './Game.class.ts';
-import { Animator } from './Animator.lib.ts';
 export { ErrorBoundary };
 
 const game = new Game();
